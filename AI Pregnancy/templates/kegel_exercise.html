@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header h1 {
+            font-size: 36px; /* Larger size for the main header */
+            text-align: center;
+            padding: 10px;
+            color: white;
+            background-color: #ffb6c1;
+        }
+
+        footer p {
+            font-size: 18px; /* Larger size for the footer text */
+            text-align: center;
+            padding: 20px;
+            background-color: #ffb6c1;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #ff6f61;
+            border-bottom: 2px solid #ffb6c1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 28px; /* Larger size for month headings */
+        }
+
+        h3 {
+            font-size: 20px; /* Larger size for exercise titles */
+            color: #ff6f61;
+            margin: 0;
+        }
+
+        p {
+            font-size: 16px; /* Larger size for exercise descriptions */
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .info-box {
+            background-color: #fff8f8;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .info-box p {
+            font-size: 16px; /* Larger size for tips */
+            color: #555;
+            margin: 0;
+        }
+
+        .exercise-card {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            background-color: #fff8f8;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .exercise-card img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 50%;
+            border: 2px solid #ffb6c1;
+        }
+
+        .exercise-details {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .exercise-card img {
+                width: 50px;
+                height: 50px;
+            }
+
+            h2 {
+                font-size: 24px; /* Slightly smaller for mobile */
+            }
+
+            h3 {
+                font-size: 18px; /* Slightly smaller for mobile */
+            }
+
+            p {
+                font-size: 14px; /* Slightly smaller for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pregnancy Exercises</h1>
+    </header>
+
+    <main>
+        <!-- First Month -->
+        <section>
+            <h2>Month 1 (Weeks 1-4)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='walking.jpeg') }}" alt="Walking">
+                <div class="exercise-details">
+                    <h3>Walking</h3>
+                    <p>A gentle walk for 20-30 minutes daily to maintain overall fitness and reduce stress.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Pelvic Tilts.jpeg') }}" alt="Pelvic Tilts">
+                <div class="exercise-details">
+                    <h3>Pelvic Tilts</h3>
+                    <p>Strengthens your back and abdominal muscles, helping relieve lower back pain.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Kegels.jpeg') }}" alt="Kegels">
+                <div class="exercise-details">
+                    <h3>Kegels</h3>
+                    <p>Enhances the strength of your pelvic floor muscles to support your growing uterus.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Note:</strong> Avoid high-impact exercises during the first month. Stay hydrated and rest as needed.</p>
+            </div>
+        </section>
+
+        <!-- Second Month -->
+        <section>
+            <h2>Month 2 (Weeks 5-8)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Swimming.jpeg') }}" alt="Swimming">
+                <div class="exercise-details">
+                    <h3>Swimming</h3>
+                    <p>A low-impact way to stay active while reducing joint stress and improving circulation.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Side-Lying Leg Lifts.jpeg') }}" alt="Side-Lying Leg Lifts">
+                <div class="exercise-details">
+                    <h3>Side-Lying Leg Lifts</h3>
+                    <p>Strengthens hips and thighs while providing balance and stability for your body.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Seated Upper-Body.jpeg') }}" alt="Seated Upper-Body">
+                <div class="exercise-details">
+                    <h3>Seated Upper-Body Exercises</h3>
+                    <p>Use light weights to improve upper body endurance and posture.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Wear supportive shoes and avoid lying flat on your back for long periods.</p>
+            </div>
+        </section>
+
+        <!-- Third Month -->
+        <section>
+            <h2>Month 3 (Weeks 9-12)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Cat-Cow.jpeg') }}" alt="Cat-Cow">
+                <div class="exercise-details">
+                    <h3>Cat-Cow Stretch</h3>
+                    <p>Relieve back tension and improve flexibility with this gentle yoga stretch.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Squats.jpeg') }}" alt="Squats">
+                <div class="exercise-details">
+                    <h3>Squats</h3>
+                    <p>Strengthen your pelvic muscles and prepare for labor with controlled squats.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Child\'s Pose.jpeg') }}" alt="Child's Pose">
+                <div class="exercise-details">
+                    <h3>Child's Pose</h3>
+                    <p>A relaxing stretch to ease back and hip discomfort.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Focus on relaxation exercises and stretches during the third month.</p>
+            </div>
+        </section>
+
+        <!-- Fourth Month -->
+        <section>
+            <h2>Month 4 (Weeks 13-16)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='bridge.jpg') }}" alt="Bridges">
+                <div class="exercise-details">
+                    <h3>Bridges</h3>
+                    <p>Strengthen glutes and lower back while improving posture and stability.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='sideplank.jpg') }}" alt="Side Plank">
+                <div class="exercise-details">
+                    <h3>Side Plank</h3>
+                    <p>Strengthens the core and improves side-to-side balance.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='modifiedpush.jpg') }}" alt="Modified Push-Ups">
+                <div class="exercise-details">
+                    <h3>Modified Push-Ups</h3>
+                    <p>Target upper body strength while being gentle on the wrists.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Focus on gentle strengthening exercises as your body adjusts.</p>
+            </div>
+        </section>
+
+        <!-- Fifth Month -->
+        <section>
+            <h2>Month 5 (Weeks 17-20)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='WallPushups.jpg') }}" alt="Wall Push-Ups">
+                <div class="exercise-details">
+                    <h3>Wall Push-Ups</h3>
+                    <p>Strengthen arms and chest with wall push-ups that are gentle on your back.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='lunges.jpg') }}" alt="Lunges">
+                <div class="exercise-details">
+                    <h3>Lunges</h3>
+                    <p>Improve leg strength and balance while preparing for labor.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Clamshells.jpg') }}" alt="Clamshells">
+                <div class="exercise-details">
+                    <h3>Clamshells</h3>
+                    <p>Target the hip muscles for better pelvic support during pregnancy.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Keep your movements slow and controlled to avoid overstretching.</p>
+            </div>
+        </section>
+
+        <!-- Sixth Month -->
+        <section>
+            <h2>Month 6 (Weeks 21-24)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='Squats.jpg') }}" alt="Squats">
+                <div class="exercise-details">
+                    <h3>Squats</h3>
+                    <p>Continue strengthening lower body muscles while maintaining balance and stability.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='shoulderpress.jpg') }}" alt="Shoulder Press">
+                <div class="exercise-details">
+                    <h3>Shoulder Press</h3>
+                    <p>Strengthen the upper body, focusing on shoulders and arms.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='legraises.jpg') }}" alt="Leg Raises">
+                <div class="exercise-details">
+                    <h3>Leg Raises</h3>
+                    <p>Strengthens your lower abdominal muscles and helps with pelvic stability.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Practice deep breathing during exercises to reduce stress and anxiety.</p>
+            </div>
+        </section>
+
+        <!-- Seventh Month -->
+        <section>
+            <h2>Month 7 (Weeks 25-28)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='modifiedseatedrow.jpg') }}" alt="Modified Seated Row">
+                <div class="exercise-details">
+                    <h3>Modified Seated Row</h3>
+                    <p>Engage your back and arms with gentle seated row variations.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='lunges.jpg') }}" alt="Lunges">
+                <div class="exercise-details">
+                    <h3>Lunges</h3>
+                    <p>Enhance leg and pelvic strength for better support.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='sideplank.jpg') }}" alt="Side Plank">
+                <div class="exercise-details">
+                    <h3>Side Plank</h3>
+                    <p>Strengthen your obliques for stability during the later stages of pregnancy.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Rest as needed to prevent overexertion.</p>
+            </div>
+        </section>
+
+        <!-- Eighth Month -->
+        <section>
+            <h2>Month 8 (Weeks 29-32)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='wallpushups.jpg') }}" alt="Wall Push-Ups">
+                <div class="exercise-details">
+                    <h3>Wall Push-Ups</h3>
+                    <p>Continue strengthening arms and chest while maintaining a stable posture.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='seatedlegextensions.jpg') }}" alt="Seated Leg Extensions">
+                <div class="exercise-details">
+                    <h3>Seated Leg Extensions</h3>
+                    <p>Strengthen thighs and maintain mobility as your belly grows.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='seatedmarching.jpg') }}" alt="Seated Marching">
+                <div class="exercise-details">
+                    <h3>Seated Marching</h3>
+                    <p>Improve circulation while keeping movements low-impact.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Focus on comfort and avoid strenuous activities that cause discomfort.</p>
+            </div>
+        </section>
+
+        <!-- Ninth Month -->
+        <section>
+            <h2>Month 9 (Weeks 33-36)</h2>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='walking.jpg') }}" alt="Walking">
+                <div class="exercise-details">
+                    <h3>Walking</h3>
+                    <p>Maintain light activity with frequent walks, and focus on relaxation.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='childspose.jpg') }}" alt="Child's Pose">
+                <div class="exercise-details">
+                    <h3>Child's Pose</h3>
+                    <p>A soothing stretch to ease back tension as your body prepares for labor.</p>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <img src="{{ url_for('static', filename='modifiedsquats.jpg') }}" alt="Modified Squats">
+                <div class="exercise-details">
+                    <h3>Modified Squats</h3>
+                    <p>Strengthen the pelvic muscles and prepare for delivery.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Tip:</strong> Focus on gentle movements to keep energy levels balanced as the due date approaches.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Stay active, stay healthy! Always consult your healthcare provider before starting any exercise program during pregnancy.</p>
+    </footer>
+</body>
+</html>

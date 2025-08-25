@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrients</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .main-feature {
+      background-image: url("{{ url_for('static', filename='nuiback.webp') }}");
+      background-image:center;
+      background-image:cover;
+      background-image: no-repeat;
+      color: white;
+      height: 25vh;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .feature-text h1 {
+      font-size: 45px;
+      margin: 0;
+      padding-top: 50px;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .article {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .article:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .article img {
+      width: 100%;
+      height: auto;
+    }
+
+    .article-content {
+      padding: 20px;
+    }
+
+    .toggle-heading {
+      font-size: 20px;
+      cursor: pointer;
+      color: #090114;
+      margin: 0 0 10px;
+    }
+
+    .details {
+      display: none;
+      font-size: 14px;
+      color: #555;
+      padding-top: 10px;
+      transition: all 0.3s ease-in-out; /* Smooth transition */
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0d0815;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #333;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="main-feature">
+    <div class="feature-text">
+      <h1>Let's Learn About The Nutrients</h1>
+    </div>
+  </div>
+  <a href="{{ url_for('index') }}" class="back-button"> Back</a>
+
+  <div class="article-grid">
+    <!-- Article 1 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='folic.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Folic Acid (Vitamin B9)</h3>
+        <p class="details">Importance: Helps prevent neural tube defects in the developing baby, such as spina bifida.<br> Sources: Leafy green vegetables, citrus fruits, beans, fortified cereals, and supplements.</p>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img2.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Iron</h3>
+        <p class="details">Importance: Supports the increased blood volume and helps deliver oxygen to the baby.<br> Sources: Red meat, poultry, fish, lentils, spinach, and iron-fortified cereals.</p>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img3.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Calcium</h3>
+        <p class="details">Importance: Essential for the development of the baby’s bones and teeth and maintaining the mother’s bone health.<br> Sources: Dairy products (milk, cheese, yogurt), leafy greens, almonds, and fortified plant-based milk.</p>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img4.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Vitamin D</h3>
+        <p class="details">Importance: Helps the body absorb calcium and supports bone health.<br> Sources: Fatty fish (salmon, mackerel), fortified milk, eggs, and sunlight exposure.</p>
+      </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img5.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Protein</h3>
+        <p class="details">Importance: Supports the growth of the baby’s tissues and organs and helps maintain maternal muscle mass.<br> Sources: Lean meats, poultry, fish, eggs, beans, tofu, nuts, and dairy products.</p>
+      </div>
+    </div>
+
+    <!-- Article 6 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img6.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Omega-3 Fatty Acids (DHA and EPA)</h3>
+        <p class="details">Importance: Crucial for brain and eye development in the baby.<br> Sources: Fatty fish (salmon, sardines), flaxseeds, chia seeds, walnuts, and fish oil supplements.</p>
+      </div>
+    </div>
+
+    <!-- Article 7 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img7.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Fiber</h3>
+        <p class="details">Importance: Helps prevent constipation, a common issue during pregnancy.<br> Sources: Whole grains, fruits, vegetables, legumes, and seeds.</p>
+      </div>
+    </div>
+
+    <!-- Article 8 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img8.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Vitamin C</h3>
+        <p class="details">Importance: Supports the immune system and helps the body absorb iron.<br> Sources: Citrus fruits (oranges, lemons), strawberries, bell peppers, broccoli, and tomatoes.</p>
+      </div>
+    </div>
+
+    <!-- Article 9 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img9.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Vitamin A</h3>
+        <p class="details">Importance: Supports the development of the baby’s heart, lungs, kidneys, eyes, and bones.<br> Sources: Carrots, sweet potatoes, spinach, and fortified dairy products. (Avoid excessive intake from animal sources like liver.)</p>
+      </div>
+    </div>
+
+    <!-- Article 10 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img10.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Iodine</h3>
+        <p class="details">Importance: Essential for the baby’s brain development and regulation of the mother’s thyroid hormones.<br> Sources: Iodized salt, fish, dairy products, and seaweed.</p>
+      </div>
+    </div>
+
+    <!-- Article 11 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img11.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Zinc</h3>
+        <p class="details">Importance: Supports the immune system and cell growth.<br> Sources: Meat, shellfish, legumes, seeds, and nuts.</p>
+      </div>
+    </div>
+
+    <!-- Article 12 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img12.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Choline</h3>
+        <p class="details">Importance: Supports brain development and helps prevent neural tube defects.<br> Sources: Eggs, meat, fish, broccoli, and peanuts.</p>
+      </div>
+    </div>
+
+    <!-- Article 13 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img13.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Magnesium</h3>
+        <p class="details">Importance: Helps regulate muscle and nerve function, blood sugar levels, and blood pressure.<br> Sources: Whole grains, nuts, seeds, legumes, and leafy green vegetables.</p>
+      </div>
+    </div>
+
+    <!-- Article 14 -->
+    <div class="article">
+      <img src="{{ url_for('static', filename='img14.png') }}" alt="Article Image">
+      <div class="article-content">
+        <h3 class="toggle-heading">Potassium</h3>
+        <p class="details">Importance: Helps maintain proper fluid balance and supports healthy blood pressure.<br> Sources: Bananas, sweet potatoes, spinach, and oranges.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const headings = document.querySelectorAll('.toggle-heading');
+    
+    headings.forEach(heading => {
+      heading.addEventListener('click', () => {
+        const details = heading.nextElementSibling;
+        // Toggle the visibility
+        if (details.style.display === 'block') {
+          details.style.display = 'none';
+        } else {
+          details.style.display = 'block';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

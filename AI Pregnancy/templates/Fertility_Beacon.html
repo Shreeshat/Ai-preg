@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Tests & Screenings</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e8e8ff;
+  color: #333;
+}
+
+.header {
+  background-color: #7e57c2;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 24px;
+}
+
+.tests-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+.test {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex: 1 1 calc(33.333% - 40px); /* Three columns */
+  min-width: 250px; /* Minimum width for small screens */
+  max-width: 300px;
+}
+.test:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.test-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  margin-right: 15px;
+  font-weight: bold;
+}
+.test-icon:hover {
+  filter: brightness(1.1);
+}
+/* Icon Background Colors */
+.all-visits {
+  background: linear-gradient(to right, #76d0d9, #58a6d1);
+}
+
+.first-visit {
+  background: linear-gradient(to right, #fa898e, #f16f8c);
+}
+
+.week-9 {
+  background: linear-gradient(to right, #a27cd8, #7154c3);
+}
+
+.week-1-12 {
+  background: linear-gradient(to right, #fa898e, #f16f8c);
+}
+
+.week-4-13
+{
+  background: linear-gradient(to right, #76d0d9, #58a6d1);
+}
+.week-10-13 {
+  background: linear-gradient(to right,  #a27cd8, #7154c3);
+}
+
+.week-11-14,
+.week-13-24 {
+  background: linear-gradient(to right, #fa898e, #f16f8c);
+}
+
+.week-20,
+.week-13-26 {
+  background: linear-gradient(to right, #a27cd8, #7154c3);
+}
+
+.week-10-13 {
+  background: linear-gradient(to right, #76d0d9, #58a6d1);
+
+}
+
+.week-24-28,
+.week-26-28 {
+  background: linear-gradient(to right, #fa898e, #f16f8c);
+}
+
+.week-35-37 {
+  background: linear-gradient(to right, #76d0d9, #58a6d1);
+}
+
+
+p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Make sure layout adjusts for smaller screens */
+@media (max-width: 768px) {
+  .test {
+    flex: 1 1 calc(50% - 20px); /* Two columns on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .test {
+    flex: 1 1 100%; /* Single column on very small screens */
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Upcoming Tests & Screenings</h1>
+  </div>
+  <a href="{{ url_for('index') }}" class="back-button"> Back</a>
+  
+  <section class="tests-section">
+ 
+    <div class="test">
+      <div class="test-icon all-visits">All Visits</div>
+      <p>Urine Tests</p>
+    </div>
+    <div class="test">
+      <div class="test-icon first-visit">1st Visit</div>
+      <p>Rh Factor Testing</p>
+    </div>
+    <div class="test">
+      <div class="test-icon first-visit">1st Visit</div>
+      <p>Initial Blood Workup</p>
+    </div>
+    <div class="test">
+        <div class="test-icon week-4-13">Week 4–13</div>
+        <p>Ultrasound</p>
+      </div>
+    <div class="test">
+      <div class="test-icon week-9">Week 9</div>
+      <p>Genetic Screening (NIPT)</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-1-12">week 1-12</div>
+      <p>Cervical Screening (pap smear)</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-10-13">Week 10–13</div>
+      <p>Chorionic Villus Sampling (CVS)</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-11-14">Week 11–14</div>
+      <p>Nuchal Translucency (NT) Screening</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-13-24">Week 13–24</div>
+      <p>Amniocentesis</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-20">Week 20</div>
+      <p>Anatomy Ultrasound</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-13-26">Week 13-26</div>
+      <p>Maternal Serum Alpha-Fetoprotein (MSAFP)</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-13-26">Week 13-26</div>
+      <p>Quadruple Screen</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-24-28">Week 24-28</div>
+      <p>Glucose Screening</p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-26-28">Week 26-28</div>
+      <p>Glucose Tolerance Test </p>
+    </div>
+    <div class="test">
+      <div class="test-icon week-35-37">Week 35-37</div>
+      <p>Group B Streptococcus (GBS) Screening</p>
+    </div>
+  </section>
+
+  
+</body>
+</html>

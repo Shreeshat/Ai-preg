@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctors Page</title>
+  <style>
+    /* Reset default margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header styling with background image */
+    header {
+      background-image: url('{{ url_for("static", filename="topdoc.webp") }}'); /* Replace with your image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 120px 20px;
+      text-align: center;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Doctor Cards Section */
+    .doctor-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin-top: -50px;
+      gap: 30px;
+      padding: 50px 20px;
+    }
+
+    /* Styling for individual doctor card */
+    .doctor-card {
+      background-color: white;
+      border-radius: 12px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .doctor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .doctor-card img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid #f15b40; /* Changed to orange */
+    }
+
+    .doctor-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .doctor-card p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .doctor-card p strong {
+      color: #f15b40; /* Changed to orange */
+    }
+
+    /* Availability Indicator */
+    .availability {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .available {
+      color: #28a745; /* Green color for available */
+    }
+
+    .not-available {
+      color: #dc3545; /* Red color for not available */
+    }
+
+    /* Button */
+    .book-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #f15b40; /* Changed to orange */
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .book-btn:hover {
+      background-color: #c85c39; /* Darker shade of orange */
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: #2c3e50; /* Darker shade */
+      color: white;
+      padding: 40px 20px;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    footer h4 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    footer p {
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 80px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .doctor-cards {
+        justify-content: center;
+      }
+
+      .doctor-card {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      footer {
+        padding: 20px;
+      }
+    }
+   
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Meet Our Experienced Doctors</h1>
+  </header>
+
+  <!-- Doctor Cards Section -->
+  <section class="doctor-cards">
+    <div class="doctor-card">
+      <img src="{{ url_for('static', filename='doc1.jpg') }}" alt="Dr.Ashish">
+      <h3>Dr.Ashish</h3>
+      <p><strong>Specialization:</strong> Obstetrician & Gynecologist</p>
+      <p><strong>Location:</strong> Manglore</p>
+      <p><strong>Experience:</strong> 10 years</p>
+      <p class="availability"><span class="available">Available</span></p>
+      <a href="#" class="book-btn" style="pointer-events: auto; opacity: 1; cursor: pointer;">Book Appointment</a>
+    </div>
+    <div class="doctor-card">
+      <img src="{{ url_for('static', filename='doc2.jpg') }}" alt="Dr.Smitha">
+      <h3>Dr.Smitha</h3>
+      <p><strong>Specialization:</strong> Maternal-Fetal Medicine</p>
+      <p><strong>Location:</strong> Puttur</p>
+      <p><strong>Experience:</strong> 8 years</p>
+      <p class="availability"><span class="not-available">Not Available</span></p>
+      <a href="#" class="book-btn" style="pointer-events: none; opacity: 0.6; cursor: not-allowed;">Book Appointment</a>
+    </div>
+    <div class="doctor-card">
+      <img src="{{ url_for('static', filename='Mahesh.jpg') }}" alt="Dr.Mahesh">
+      <h3>Dr.Mahesh</h3>
+      <p><strong>Specialization:</strong> Obstetrician & Gynecologist</p>
+      <p><strong>Location:</strong> Manipal</p>
+      <p><strong>Experience:</strong> 12 years</p>
+      <p class="availability"><span class="available">Available</span></p>
+      <a href="#" class="book-btn" style="pointer-events: auto; opacity: 1; cursor: pointer;">Book Appointment</a>
+    </div>
+    <div class="doctor-card">
+      <img src="{{ url_for('static', filename='seema.jpg') }}" alt="Dr.Seema">
+      <h3>Dr.Seema</h3>
+      <p><strong>Specialization:</strong> High-Risk Obstetrics</p>
+      <p><strong>Location:</strong> Puttur</p>
+      <p><strong>Experience:</strong> 15 years</p>
+      <p class="availability"><span class="available">Available</span></p>
+      <a href="#" class="book-btn" style="pointer-events: auto; opacity: 1; cursor: pointer;">Book Appointment</a>
+    </div>
+    <div class="doctor-card">
+      <img src="{{ url_for('static', filename='Ravindra.jpg') }}" alt="Dr.Ravindra">
+      <h3>Dr.Ravindra</h3>
+      <p><strong>Specialization:</strong> Women's Health & Pregnancy</p>
+      <p><strong>Location:</strong> Kasargod</p>
+      <p><strong>Experience:</strong> 9 years</p>
+      <p class="availability"><span class="not-available">Not Available</span></p>
+      <a href="#" class="book-btn" style="pointer-events: none; opacity: 0.6; cursor: not-allowed;">Book Appointment</a>
+    </div>
+    <div class="doctor-card">
+      <img src="{{ url_for('static', filename='william.jpg') }}" alt="Dr.william">
+      <h3>Dr. William</h3>
+      <p><strong>Specialization:</strong> Reproductive Endocrinology & Fertility</p>
+      <p><strong>Location:</strong> Manipal</p>
+      <p><strong>Experience:</strong> 13 years</p>
+      <p class="availability"><span class="available">Available</span></p>
+      <a href="#" class="book-btn" style="pointer-events: auto; opacity: 1; cursor: pointer;">Book Appointment</a>
+    </div>
+  </section>
+  
+  <!-- Footer Section -->
+  <footer>
+    <h4>Contact Us</h4>
+    <p>Email: support@nurturenest.com | Phone: +1 123-456-7890</p>
+    <p>&copy; 2024 NurtureNest. All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>

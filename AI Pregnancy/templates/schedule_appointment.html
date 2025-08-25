@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment</title>
+    <style>
+    /* General Reset */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Main Container */
+.container {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    transform: translateY(-30px);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header */
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    color: #4f85ff;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Doctor Info Styling */
+.doctor-info {
+    margin-bottom: 30px;
+}
+
+.doctor-info h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.doctor-info p {
+    font-size: 1.1rem;
+    color: #777;
+    margin: 5px 0;
+}
+
+/* Form Styling */
+.appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.appointment-form label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+}
+
+.appointment-form input {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.appointment-form input:focus {
+    border-color: #4f85ff;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(79, 133, 255, 0.3);
+}
+
+/* Submit Button */
+.appointment-form button {
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #4f85ff;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.appointment-form button:hover {
+    background-color: #3d72d0;
+    transform: translateY(-2px);
+}
+
+.appointment-form button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(79, 133, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 40px;
+    }
+
+    header h1 {
+        font-size: 2.4rem;
+    }
+
+    .doctor-info h2 {
+        font-size: 1.7rem;
+    }
+
+    .doctor-info p {
+        font-size: 1rem;
+    }
+
+    .appointment-form input,
+    .appointment-form button {
+        font-size: 1rem;
+    }
+}
+/* Notification Styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: white;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.notification.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.notification.error {
+    background-color: #f44336; /* Red */
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Your Appointment</h1>
+        </header>
+
+        <section class="doctor-info">
+            <h2>Doctor: Dr. {{ doctor_name }}</h2>
+            <p><strong>Specialization:</strong> {{ doctor_specialization }}</p>
+            <p><strong>Location:</strong> {{ doctor_location }}</p>
+        </section>
+
+        <section class="appointment-form">
+            <form action="{{ url_for('confirm_appointment') }}" method="POST">
+                <label for="appointment_date">Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required>
+
+                <label for="patient_name">Your Name:</label>
+                <input type="text" id="patient_name" name="patient_name" required>
+
+                <label for="patient_email">Email:</label>
+                <input type="email" id="patient_email" name="patient_email" required>
+
+                <label for="patient_phone">Your Phone:</label>
+                <input type="tel" id="patient_phone" name="patient_phone" required>
+
+                <button type="submit">Confirm Appointment</button>
+            </form>
+        </section>
+    </div>
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    const appointmentDate = document.getElementById('appointment_date');
+    const patientName = document.getElementById('patient_name');
+    const patientEmail = document.getElementById('patient_email');
+    const patientPhone = document.getElementById('patient_phone');
+    const submitButton = form.querySelector('button');
+
+    // Simple form validation
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Check if fields are filled
+        if (!appointmentDate.value || !patientName.value || !patientEmail.value || !patientPhone.value) {
+            showNotification('Please fill in all fields.', 'error');
+            return;
+        }
+
+        // Confirm appointment before submission
+        const confirmMessage = `
+            Your appointment is confirmed for ${appointmentDate.value}.
+            \nName: ${patientName.value}
+            \nEmail: ${patientEmail.value}
+            \nPhone: ${patientPhone.value}
+            \n\nDo you want to proceed with booking?`;
+
+        if (confirm(confirmMessage)) {
+            showNotification('Appointment confirmed! We will send you a confirmation email shortly.', 'success');
+            form.submit();
+        } else {
+            showNotification('Appointment booking canceled.', 'error');
+        }
+    });
+
+    // Enhancing focus and blur effect on inputs
+    [appointmentDate, patientName, patientEmail, patientPhone].forEach(input => {
+        input.addEventListener('focus', () => {
+            input.style.borderColor = '#4f85ff';
+            input.style.backgroundColor = '#ffffff';
+        });
+
+        input.addEventListener('blur', () => {
+            input.style.borderColor = '#ddd';
+            input.style.backgroundColor = '#fafafa';
+        });
+    });
+
+    // Show success/error notification
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.classList.add('notification', type);
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 4000);
+    }
+});
+
+
+    </script>
+</body>
+</html>

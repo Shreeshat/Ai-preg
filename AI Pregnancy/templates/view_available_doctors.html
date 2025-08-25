@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Doctors</title>
+  <style>
+    .doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.doctor-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.btn-schedule {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-schedule:hover {
+    background-color: #0056b3;
+}
+
+  </style>
+</head>
+<body>
+
+<h2>Available Doctors</h2>
+
+<div class="doctor-list">
+    {% for doctor in doctors %}
+    <div class="doctor-card">
+        <img src="{{ url_for('static', filename=doctor['image_url']) }}" alt="{{ doctor['name'] }}" class="doctor-image">
+        <h3>{{ doctor['name'] }}</h3>
+        <p>Specialization: {{ doctor['specialization'] }}</p>
+        <p>Location: {{ doctor['location'] }}</p>
+        <p>Contact: {{ doctor['contact'] }}</p>
+        
+        <!-- List available dates -->
+        <p>Available Dates: 
+            {% for date in doctor['available_dates'] %}
+                <span>{{ date }}</span>
+            {% endfor %}
+        </p>
+        
+        <!-- Link to schedule an appointment -->
+        <a href="{{ url_for('schedule_appointment', doctor_id=doctor['_id']) }}" class="btn-schedule">Schedule Appointment</a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

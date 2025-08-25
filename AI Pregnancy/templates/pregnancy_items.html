@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #ffb6c1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 15px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item h3 {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        .item p {
+            color: #666;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+
+        .item button {
+            background-color: #ffb6c1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .item button:hover {
+            background-color: #ff8c9d;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0d0815;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #333;
+        }
+
+        /* Cart badge */
+        .cart-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pregnancy Items</h1>
+        <a href="{{ url_for('view_cart') }}" class="back-button">View Cart</a>
+
+        <div>
+            <span class="cart-badge" id="cart-badge">0</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Item 1 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='item1.webp') }}" alt="Prenatal Vitamins">
+            <h3>Prenatal Vitamins</h3>
+            <p>Essential nutrients to support a healthy pregnancy.</p>
+            <button onclick="addToCart('Prenatal Vitamins', 'item1.webp')">Add to Cart</button>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='strch.jpg') }}" alt="Stretch Mark Creams">
+            <h3>Stretch Mark Creams and Oils</h3>
+            <p>Keep your skin moisturized and prevent stretch marks.</p>
+            <button onclick="addToCart('Stretch Mark Creams and Oils', 'strch.jpg')">Add to Cart</button>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='bellysupport.jpg') }}" alt="Belly Support Bands">
+            <h3>Belly Support Bands</h3>
+            <p>Provides support and relieves back pain during pregnancy.</p>
+            <button onclick="addToCart('Belly Support Bands', 'bellysupport.jpg')">Add to Cart</button>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='pillow.jpg') }}" alt="Pregnancy Pillows">
+            <h3>Pregnancy Pillows</h3>
+            <p>Comfortable full-body or wedge pillows for better sleep.</p>
+            <button onclick="addToCart('Pregnancy Pillows', 'pillow.jpg')">Add to Cart</button>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='item2.jpg') }}" alt="Anti-Nausea Products">
+            <h3>Anti-Nausea Products</h3>
+            <p>Ginger candies to ease nausea.</p>
+            <button onclick="addToCart('Anti-Nausea Products', 'item2.jpg')">Add to Cart</button>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='item5.jpg') }}" alt="Compression Socks">
+            <h3>Compression Socks</h3>
+            <p>Improve circulation and reduce swelling during pregnancy.</p>
+            <button onclick="addToCart('Compression Socks', 'item5.jpg')">Add to Cart</button>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='yoga mat.webp') }}" alt="Compression Socks">
+            <img src="" alt="Yoga Mat">
+            <h3>Yoga Mat</h3>
+            <p>Perfect for prenatal exercises and relaxation sessions.</p>
+            <button onclick="addToCart('Yoga Mat', 'yoga mat.webp')">Add to Cart</button>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='shoes.jpg') }}" alt="Compression Socks">
+            <img src="" alt="Walking Shoes">
+            <h3>Walking Shoes</h3>
+            <p>Comfortable shoes designed for pregnancy-safe walking.</p>
+            <button onclick="addToCart('Walking Shoes', 'shoes.jpg')">Add to Cart</button>
+        </div>
+
+        <!-- Item 9 -->
+        <div class="item">
+            <img src="{{ url_for('static', filename='foam roller.webp') }}" alt="Massage Tools">
+            <h3>Massage Tools</h3>
+            <p>Relax and relieve tension with pregnancy-safe massage tools.</p>
+            <button onclick="addToCart('Massage Tools', 'foam roller.webp')">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize cart in localStorage
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify([]));
+        }
+
+        // Function to add items to cart
+        function addToCart(itemName, itemImage) {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const item = { name: itemName, image: itemImage };
+
+            // Check if item already exists in cart
+            const itemIndex = cart.findIndex(cartItem => cartItem.name === itemName);
+            if (itemIndex === -1) {
+                cart.push(item);  // Add item if it doesn't exist
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartBadge();  // Update cart badge
+            } else {
+                alert('Item already in the cart');
+            }
+        }
+
+        // Function to update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const cartBadge = document.getElementById('cart-badge');
+            cartBadge.innerText = cart.length;  // Display number of items in cart
+        }
+
+        // Update cart badge on page load
+        window.onload = updateCartBadge;
+    </script>
+</body>
+</html>

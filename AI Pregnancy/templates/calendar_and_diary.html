@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Calendar & Diary</title>
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f8f7;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+/* Main Container */
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #4CAF50;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Calendar and Diary Section */
+.calendar-section, .diary-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Date Input and Diary Textarea */
+#date-picker {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+#diary-entry {
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    resize: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#entries-list {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Entry Style */
+.entry {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.entry p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    #diary-entry {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pregnancy Calendar & Diary</h1>
+        </header>
+
+        <section class="calendar-section">
+            <h2>Track Your Milestones</h2>
+            <input type="date" id="date-picker" onchange="showDiaryEntry()">
+            <div id="calendar-entry">
+                <p>Write a note about your day:</p>
+                <textarea id="diary-entry" rows="4" placeholder="Write here..."></textarea>
+                <button onclick="saveEntry()">Save Entry</button>
+            </div>
+        </section>
+
+        <section class="diary-section">
+            <h2>Your Past Entries</h2>
+            <div id="entries-list"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Save diary entry to local storage
+function saveEntry() {
+    const date = document.getElementById('date-picker').value;
+    const entry = document.getElementById('diary-entry').value;
+
+    if (!date || !entry) {
+        alert("Please select a date and write your entry!");
+        return;
+    }
+
+    let entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+
+    entries.push({ date: date, entry: entry });
+    localStorage.setItem('diaryEntries', JSON.stringify(entries));
+
+    displayEntries();
+    resetFields();
+}
+
+// Display all diary entries from local storage
+function displayEntries() {
+    const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+    const entriesList = document.getElementById('entries-list');
+    
+    entriesList.innerHTML = ''; // Clear the list before adding new entries
+
+    entries.forEach((entry, index) => {
+        const entryDiv = document.createElement('div');
+        entryDiv.classList.add('entry');
+        
+        const entryDate = document.createElement('p');
+        entryDate.textContent = `Date: ${entry.date}`;
+        entryDiv.appendChild(entryDate);
+
+        const entryText = document.createElement('p');
+        entryText.textContent = `Note: ${entry.entry}`;
+        entryDiv.appendChild(entryText);
+
+        // Create delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-btn');
+        deleteButton.textContent = 'Delete Entry';
+        deleteButton.onclick = function() {
+            deleteEntry(index);
+        };
+        entryDiv.appendChild(deleteButton);
+
+        entriesList.appendChild(entryDiv);
+    });
+}
+
+// Reset input fields after saving
+function resetFields() {
+    document.getElementById('date-picker').value = '';
+    document.getElementById('diary-entry').value = '';
+}
+
+// Display entries when the page loads
+document.addEventListener('DOMContentLoaded', displayEntries);
+
+// Show the diary entry section when a date is selected
+function showDiaryEntry() {
+    const selectedDate = document.getElementById('date-picker').value;
+
+    if (selectedDate) {
+        document.getElementById('calendar-entry').style.display = 'block';
+    } else {
+        document.getElementById('calendar-entry').style.display = 'none';
+    }
+}
+
+// Delete a diary entry
+function deleteEntry(index) {
+    let entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+    entries.splice(index, 1);  // Remove the entry at the specified index
+    localStorage.setItem('diaryEntries', JSON.stringify(entries)); // Save updated entries to localStorage
+    displayEntries();  // Refresh the displayed entries
+}
+
+    </script>
+</body>
+</html>

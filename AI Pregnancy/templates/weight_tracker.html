@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Weight Tracker</title>
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+/* Main Container */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Header */
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Form Styling */
+.tracker-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tracker-form label {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.tracker-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    transition: 0.3s ease;
+}
+
+.tracker-form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.tracker-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: 600;
+}
+
+.tracker-form button:hover {
+    background-color: #45a049;
+}
+
+/* Chart Styling */
+.weight-history {
+    margin-top: 30px;
+}
+
+#weightChart {
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .tracker-form button {
+        font-size: 1rem;
+    }
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pregnancy Weight Tracker</h1>
+            <p>Track your weight throughout your pregnancy.</p>
+        </header>
+
+        <div class="tracker-form">
+            <label for="weight">Enter Your Weight (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.1" min="0" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <button onclick="addWeight()">Add Weight</button>
+        </div>
+
+        <div class="weight-history">
+            <h2>Weight History</h2>
+            <canvas id="weightChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Initialize empty arrays to hold weight data and dates
+let weightData = [];
+let dateData = [];
+
+// Create a chart instance for displaying the weight history
+const ctx = document.getElementById('weightChart').getContext('2d');
+const weightChart = new Chart(ctx, {
+    type: 'line', // Line chart for weight progression
+    data: {
+        labels: dateData,
+        datasets: [{
+            label: 'Weight (kg)',
+            data: weightData,
+            borderColor: '#4CAF50',
+            fill: false,
+            tension: 0.1,
+            borderWidth: 3
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Date'
+                },
+                beginAtZero: true
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Weight (kg)'
+                },
+                min: 30, // Adjust the minimum value based on your expected weight range
+            }
+        }
+    }
+});
+
+// Function to add weight data
+function addWeight() {
+    const weight = parseFloat(document.getElementById('weight').value);
+    const date = document.getElementById('date').value;
+
+    if (isNaN(weight) || !date) {
+        alert('Please enter a valid weight and date!');
+        return;
+    }
+
+    // Add the new weight and date to the arrays
+    weightData.push(weight);
+    dateData.push(date);
+
+    // Update the chart with the new data
+    weightChart.update();
+
+    // Clear the input fields after adding data
+    document.getElementById('weight').value = '';
+    document.getElementById('date').value = '';
+}
+
+    </script>
+</body>
+</html>

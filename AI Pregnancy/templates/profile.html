@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='new2.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .profile-heading {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid #ddd;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-picture {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .upload-button-container {
+            margin-bottom: 15px;
+        }
+
+        .upload-button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .upload-button:hover {
+            background-color: #eee;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .profile-info strong {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2 class="profile-heading">Your Profile</h2>
+        {% if user %}
+            <div class="profile-picture-container">
+                {% if user.get('profile_picture') %}
+                    <img src="{{ url_for('static', filename='uploads/' + user['profile_picture']) }}" alt="Profile Picture" class="profile-picture">
+                {% else %}
+                    <span>👤</span>
+                {% endif %}
+            </div>
+            <div class="upload-button-container">
+                <form method="POST" action="{{ url_for('upload_profile_picture') }}" enctype="multipart/form-data">
+                    <input type="file" name="profile_picture" accept="image/*" style="display: none;" id="profilePictureInput">
+                    <label for="profilePictureInput" class="upload-button">Upload Profile Picture</label>
+                    <button type="submit" class="upload-button">Save Picture</button>
+                </form>
+            </div>
+            <div class="profile-info">
+                <strong>Username:</strong> {{ user.get('username', '') }}
+            </div>
+            <div class="profile-info">
+                <strong>Email:</strong> {{ user.get('email', '') }}
+            </div>
+            <div class="profile-info">
+                <strong>Age:</strong> {% if user.get('age') %}{{ user.get('age') }}{% else %}Not provided{% endif %}
+            </div>
+            <div class="profile-info">
+                <strong>Address:</strong> {% if user.get('address') %}{{ user.get('address') }}{% else %}Not provided{% endif %}
+            </div>
+            <div class="profile-info">
+                <strong>PhoneNumber:</strong> {% if user.get('phonenumber') %}{{ user.get('phonenumber') }}{% else %}Not provided{% endif %}
+            </div>
+            <div class="profile-info">
+                <strong>State:</strong> {% if user.get('state') %}{{ user.get('state') }}{% else %}Not provided{% endif %}
+            </div>
+            <div class="profile-info">
+                <strong>Country:</strong> {% if user.get('country') %}{{ user.get('country') }}{% else %}Not provided{% endif %}
+            </div>
+            <a href="{{ url_for('edit_profile') }}" class="back-link">Edit Profile</a>
+        {% else %}
+            <p>No user information available. Please log in.</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>

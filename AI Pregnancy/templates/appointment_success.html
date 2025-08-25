@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmed</title>
+    <style>
+      /* Resetting some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f6d7b9, #f0c8ff, #e6f2f7); /* Soft pastel gradient */
+    background-size: 400% 400%; /* Smooth gradient animation */
+    animation: gradientAnimation 12s ease infinite; /* Moving gradient effect */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Main Confirmation Box */
+.confirmation-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Light white with slight transparency */
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 3rem;
+    color: #5f27cd; /* Soft purple */
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: slideUp 1.2s ease-out;
+}
+
+/* Paragraph Styling */
+p {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fadeInText 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Button Styling */
+a.btn {
+    display: inline-block;
+    background-color: #ff8a65; /* Soft coral color */
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 1.15rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInButton 1.8s ease-out forwards;
+    animation-delay: 1s;
+}
+
+a.btn:hover {
+    background-color: #ff7043; /* Slightly darker coral for hover effect */
+    transform: scale(1.05);
+}
+
+a.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 105, 135, 0.6);
+}
+
+/* Animations */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInButton {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .confirmation-container {
+        padding: 30px 40px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    a.btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Appointment Confirmed!</h1>
+        <p>Thank you for booking your appointment. We will contact you shortly.</p>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const confirmationMessage = document.querySelector('p');
+    const button = document.querySelector('.btn');
+
+    // Trigger an animation after content is loaded
+    setTimeout(() => {
+        confirmationMessage.style.opacity = 1;  // Make paragraph visible
+    }, 500); // Delay for smooth fade-in
+
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Add a simple transition effect on button click
+        button.style.transform = "scale(0.98)";
+        setTimeout(() => {
+            window.location.href = "{{ url_for('index') }}"; // Redirect after click
+        }, 300); // Wait for animation to finish before redirecting
+    });
+});
+
+    </script>
+</body>
+</html>
